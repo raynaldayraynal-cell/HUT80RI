@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUT RI Ke-80 - 17 Agustus 2025</title>
+    <style>
+        @keyframes confettiFall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--red);
+            opacity: 0.8;
+            z-index: 1000;
+            animation: confettiFall 5s linear forwards;
+        }
+        :root {
+            --red: #FF0000;
+            --white: #FFFFFF;
+            --gold: #FFD700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            position: relative;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fighting.png') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+            animation: panBackground 60s linear infinite;
+        }
+        @keyframes panBackground {
+            0% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        header {
+            background: linear-gradient(135deg, 
+                #FF0000, #CC0000, #FF0000,
+                #CC0000, #FF0000, #CC0000);
+            background-size: 400% 400%;
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            animation: gradientFlow 8s ease infinite;
+        }
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        .flag-decoration {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--red) 50%, var(--white) 50%);
+            bottom: 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: textPulse 2s infinite alternate;
+        }
+        @keyframes textPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 50vh;
+            max-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(255,0,0,0.3));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding: 0 1rem;
+            backdrop-filter: blur(1px);
+        }
+
+        .overlay h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown {
+            background-color: var(--red);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .countdown-box {
+            background-color: var(--white);
+            color: var(--red);
+            padding: 1rem;
+            border-radius: 5px;
+            min-width: 80px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .countdown-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .content-section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background-color: rgba(255,255,255,0.95);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255,0,0,0.1);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255,0,0,0.2);
+        }
+
+        .section-title {
+            color: var(--red);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--red);
+            margin: 0.5rem auto 0;
+        }
+
+        .history-card {
+            background-color: var(--white);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .history-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .history-card h3 {
+            color: var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .fighters-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .fighter-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--red);
+            margin-bottom: 0.5rem;
+        }
+
+        .fighter-item p {
+            font-weight: bold;
+            color: var(--red);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(255,0,0,0.2);
+            border: 2px solid rgba(255,255,255,0.8);
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,0,0,0.05));
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: var(--red);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-links img {
+            transition: transform 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-links img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-image {
+                height: 40vh;
+            }
+
+            .overlay h2 {
+                font-size: 1.5rem;
+            }
+
+            .countdown-box {
+                min-width: 70px;
+            }
+
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .overlay h2 {
+                font-size: 1.2rem;
+            }
+
+            .countdown-container {
+                gap: 0.5rem;
+            }
+
+            .countdown-box {
+                min-width: 60px;
+                padding: 0.5rem;
+            }
+
+            .countdown-number {
+                font-size: 1.2rem;
+            }
+
+            .countdown-label {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="max-width: 150px; margin: 0 auto 1rem;">
+            <img src="https://i.ibb.co.com/8DZkcYcY/garuda.jpg
+             " alt="Garuda Pancasila" style="width:100%;">
+        </div>
+        <h1>DIRGAHAYU REPUBLIK INDONESIA</h1>
+        <p class="subtitle">Memperingati 80 Tahun Kemerdekaan</p>
+        <div class="flag-decoration"></div>
+    </header>
+
+    <div class="hero-image">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/02cc13e0-318d-4fa4-8e70-41842fe43757.png" alt="Kolase digital perayaan kemerdekaan Indonesia dengan bendera merah putih berkibar, kembang api, dan kerumunan orang bersorak di Jakarta" />
+        <div class="overlay">
+            <h2>17 Agustus 2025</h2>
+            <p>Merayakan 80 Tahun Kebanggaan Bangsa</p>
+        </div>
+    </div>
+
+    <section class="countdown">
+        <h2>Menuju HUT RI Ke-80</h2>
+        <div class="countdown-container">
+            <div class="countdown-box">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Hari</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Jam</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Menit</div>
+            </div>
+            <div class="countdown-box">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Detik</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Sejarah Lengkap Kemerdekaan Indonesia</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Berikut adalah momen-momen bersejarah dalam perjalanan kemerdekaan Indonesia</p>
+        <div class="history-card">
+            <h3>Latar Belakang Perjuangan</h3>
+            <p>Perjuangan kemerdekaan Indonesia dimulai sejak kedatangan penjajah Belanda tahun 1602. Rakyat Indonesia menderita selama 350 tahun di bawah penjajahan kolonial Belanda dan 3,5 tahun di bawah Jepang. Berbagai perlawanan muncul seperti Diponegoro, Cut Nyak Dien, dan Pattimura.</p>
+        </div>
+        <div class="history-card">
+            <h3>Persiapan Kemerdekaan</h3>
+            <p>Setelah Jepang kalah dalam Perang Dunia II, tokoh-tokoh nasional seperti Soekarno, Hatta, dan lainnya mempersiapkan kemerdekaan. BPUPKI dibentuk untuk menyusun dasar negara yang kemudian menghasilkan Pancasila pada 1 Juni 1945.</p>
+        </div>
+        <div class="history-card">
+            <h3>Proklamasi 17 Agustus 1945</h3>
+            <p>Pada Jumat, 17 Agustus 1945 pukul 10.00 WIB, Soekarno-Hatta membacakan teks proklamasi di Jalan Pegangsaan Timur 56, Jakarta. Naskah proklamasi yang singkat namun bermakna dalam itu ditandatangani atas nama bangsa Indonesia.</p>
+        </div>
+        <div class="history-card">
+            <h3>Perjuangan Mempertahankan</h3>
+            <p>Setelah merdeka, Indonesia harus berjuang mempertahankan kedaulatan melawan Sekutu dan Belanda yang ingin kembali menjajah. Periode 1945-1949 dikenal sebagai Revolusi Fisik dengan pertempuran heroik di Surabaya, Bandung, dan Ambarawa.</p>
+        </div>
+        <div class="history-card">
+            <h3>80 Tahun Perjalanan</h3>
+            <p>Sejak 1945, Indonesia telah melalui berbagai periode sejarah: Demokrasi Liberal, Orde Lama, Orde Baru, hingga Reformasi. Tantangan dan pencapaian hadir silih berganti, namun semangat persatuan dalam Bhinneka Tunggal Ika tetap menjadi pegangan.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Para Pejuang Kemerdekaan</h2>
+        <div class="fighters-gallery">
+            <div class="fighter-item">
+                <img src="https://i.ibb.co.com/GQpskwVt/Presiden-Sukarno.jpg" alt="Ir. Soekarno - Proklamator Kemerdekaan Indonesia">
+                <p>Ir. Soekarno</p>
+            </div>
+            <div class="fighter-item">
+                <img src="https://i.ibb.co.com/JFtgsLzB/hatta.jpg" alt="Dr. Mohammad Hatta - Proklamator Kemerdekaan Indonesia">
+                <p>Dr. Mohammad Hatta</p>
+            </div>
+            <div class="fighter-item">
+                <img src="https://i.ibb.co.com/XkNKFGtK/sudirman.jpg" alt="Jenderal Sudirman - Panglima Besar TKR">
+                <p>Jenderal Sudirman</p>
+            </div>
+            <div class="fighter-item">
+                <img src="https://i.ibb.co.com/8DCKQPnh/cut-myak-dien.jpg" alt="Cut Nyak Dien - Pahlawan Nasional Aceh">
+                <p>Cut Nyak Dien</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Galeri Kemerdekaan</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://i.ibb.co.com/LhRxL7Gy/RI1.jpg" alt="Upacara bendera di Istana Merdeka dengan presiden menyampaikan pidato kenegaraan" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co.com/MkZ26fZJ/RI2.jpg" alt="Lomba panjat pinang tradisional dengan peserta bersemangat berusaha mencapai hadiah di puncak" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co.com/VYGzrN20/RI3.webp" alt="Anak-anak sekolah menggunakan kostum pahlawan nasional dalam parade kemerdekaan" />
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co.com/vvmNR1ps/RI4.jpg" alt="Pertunjukan tari daerah dari berbagai provinsi di Indonesia dengan kostum warna-warni" />
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 Raynaldy</p>
+        <p>Indonesia Tanah Airku, Tanah Tumpah Darahku</p>
+        
+    </footer>
+
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const independenceDay = new Date('August 17, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = independenceDay - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Simple animation for gallery items on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.style.opacity = 0;
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(item);
+        });
+    // Create confetti effect
+        function createConfetti() {
+            const colors = ['#FF0000', '#FFFFFF', '#FFD700'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
+
+        // Animate history cards on scroll
+        const historyCards = document.querySelectorAll('.history-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        historyCards.forEach(card => {
+            cardObserver.observe(card);
+        });
+
+        // Start confetti effect when page loads
+        window.addEventListener('load', () => {
+            createConfetti();
+            setInterval(createConfetti, 10000);
+        });
+    </script>
+</body>
+</html>
+
